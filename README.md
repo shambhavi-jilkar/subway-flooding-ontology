@@ -142,35 +142,7 @@ subway-emergency-ontology/
 ├── tests/                 # Unit tests
 ├── requirements.txt       # Python dependencies
 └── README.md
-```
 
-## 🧪 Testing
-
-Run the test suite:
-```bash
-python -m pytest tests/ -v
-```
-
-Run specific test categories:
-```bash
-# Test NLP components
-python -m pytest tests/test_nlp.py -v
-
-# Test ontology reasoning
-python -m pytest tests/test_ontology.py -v
-
-# Test dependency analysis
-python -m pytest tests/test_reasoning.py -v
-```
-
-## 📈 Performance Benchmarks
-
-| Component | Processing Time | Accuracy |
-|-----------|----------------|----------|
-| Entity Extraction | <500ms | >90% |
-| Intent Classification | <200ms | >85% |
-| Cascade Analysis | <2s | N/A |
-| Total Pipeline | <3.2s | >88% |
 
 ## 🛠️ Technology Stack
 
@@ -180,27 +152,6 @@ python -m pytest tests/test_reasoning.py -v
 - **Web Framework**: FastAPI (planned)
 - **Data Processing**: Pandas, NumPy
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### Development Setup
-
-```bash
-# Install development dependencies
-pip install -r requirements-dev.txt
-
-# Install pre-commit hooks
-pre-commit install
-
-# Run code formatting
-black src/ tests/
-flake8 src/ tests/
-```
 
 ## 📄 License
 
@@ -213,7 +164,6 @@ This system is part of ongoing research in flooding emergency communication syst
 ## 🆘 Support
 
 - **Issues**: [GitHub Issues](https://github.com/shambhavi-jilkar/subway-flooding-ontology/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/shambhavi-jilkar/subway-flooding-ontology/discussions)
 - **Email**: sjilkar@andrew.cmu.edu
 
 ## 🗺️ Roadmap
