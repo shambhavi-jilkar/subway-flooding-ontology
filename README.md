@@ -44,7 +44,7 @@ Emergency Message → [NLP Processing] → [Ontology Reasoning] → Enhanced Res
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/subway-emergency-ontology.git
+   git clone
    cd subway-emergency-ontology
    ```
 
@@ -208,32 +208,18 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📚 Research & Citation
 
-This system is part of ongoing research in emergency communication systems. If you use this work in academic research, please consider citing:
-
-```bibtex
-@software{subway_emergency_ontology,
-  title={Subway Emergency Ontology System},
-  author={Your Name},
-  year={2025},
-  url={https://github.com/yourusername/subway-emergency-ontology}
-}
-```
+This system is part of ongoing research in flooding emergency communication systems. 
 
 ## 🆘 Support
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/subway-emergency-ontology/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/subway-emergency-ontology/discussions)
-- **Email**: your.email@domain.com
+- **Issues**: [GitHub Issues](https://github.com/shambhavi-jilkar/subway-flooding-ontology/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/shambhavi-jilkar/subway-flooding-ontology/discussions)
+- **Email**: sjilkar@andrew.cmu.edu
 
 ## 🗺️ Roadmap
 
 - [ ] Web API implementation
 - [ ] Real-time dashboard
-- [ ] Multi-language support
 - [ ] Integration with external emergency systems
 - [ ] Advanced ML models for prediction
-- [ ] Mobile applications
 
----
-
-**Built with ❤️ for safer transit systems**
