@@ -142,7 +142,7 @@ subway-emergency-ontology/
 ├── tests/                 # Unit tests
 ├── requirements.txt       # Python dependencies
 └── README.md
-
+```
 
 ## 🛠️ Technology Stack
 
