@@ -1,0 +1,297 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix subway: <http://subway-emergency.org/ontology#> .
+@prefix bfo: <http://purl.obolibrary.org/obo/> .
+
+# Ontology Declaration
+<http://subway-emergency.org/ontology> rdf:type owl:Ontology ;
+    rdfs:label "Subway Emergency Communication Ontology" ;
+    rdfs:comment "Dynamic ontology for enhanced emergency communication" .
+
+# Top-Level Classes (aligned with BFO)
+subway:Entity rdf:type owl:Class ;
+    rdfs:label "Subway System Entity" ;
+    rdfs:subClassOf bfo:BFO_0000001 .  # BFO Entity
+
+# Infrastructure Classes
+subway:Infrastructure rdf:type owl:Class ;
+    rdfs:subClassOf subway:Entity ;
+    rdfs:label "Infrastructure Component" .
+
+subway:PowerSystem rdf:type owl:Class ;
+    rdfs:subClassOf subway:Infrastructure ;
+    rdfs:label "Power System" .
+
+subway:SignalSystem rdf:type owl:Class ;
+    rdfs:subClassOf subway:Infrastructure ;
+    rdfs:label "Signal System" .
+
+subway:DrainageSystem rdf:type owl:Class ;
+    rdfs:subClassOf subway:Infrastructure ;
+    rdfs:label "Drainage System" .
+
+subway:TransitStructure rdf:type owl:Class ;
+    rdfs:subClassOf subway:Infrastructure ;
+    rdfs:label "Transit Structure" .
+
+# Personnel Classes
+subway:Personnel rdf:type owl:Class ;
+    rdfs:subClassOf subway:Entity ;
+    rdfs:label "Personnel" .
+
+subway:FieldAgent rdf:type owl:Class ;
+    rdfs:subClassOf subway:Personnel ;
+    rdfs:label "Field Agent" .
+
+subway:CommandPersonnel rdf:type owl:Class ;
+    rdfs:subClassOf subway:Personnel ;
+    rdfs:label "Command Personnel" .
+
+# Government Classes
+subway:Government rdf:type owl:Class ;
+    rdfs:subClassOf subway:Entity ;
+    rdfs:label "Government Entity" .
+
+subway:TransitAuthority rdf:type owl:Class ;
+    rdfs:subClassOf subway:Government ;
+    rdfs:label "Transit Authority" .
+
+subway:EmergencyAgency rdf:type owl:Class ;
+    rdfs:subClassOf subway:Government ;
+    rdfs:label "Emergency Agency" .
+
+# Information Classes
+subway:Information rdf:type owl:Class ;
+    rdfs:subClassOf subway:Entity ;
+    rdfs:label "Information Resource" .
+
+subway:SensorData rdf:type owl:Class ;
+    rdfs:subClassOf subway:Information ;
+    rdfs:label "Sensor Data" .
+
+subway:Protocol rdf:type owl:Class ;
+    rdfs:subClassOf subway:Information ;
+    rdfs:label "Emergency Protocol" .
+
+# Environmental Classes
+subway:Environmental rdf:type owl:Class ;
+    rdfs:subClassOf subway:Entity ;
+    rdfs:label "Environmental Factor" .
+
+subway:Hazard rdf:type owl:Class ;
+    rdfs:subClassOf subway:Environmental ;
+    rdfs:label "Environmental Hazard" .
+
+# Public Classes
+subway:Public rdf:type owl:Class ;
+    rdfs:subClassOf subway:Entity ;
+    rdfs:label "Public Stakeholder" .
+
+# Object Properties (Relationships)
+subway:powers rdf:type owl:ObjectProperty ;
+    rdfs:domain subway:PowerSystem ;
+    rdfs:range subway:Infrastructure ;
+    rdfs:label "powers" ;
+    owl:inverseOf subway:poweredBy .
+
+subway:controls rdf:type owl:ObjectProperty ;
+    rdfs:domain subway:SignalSystem ;
+    rdfs:range subway:TransitStructure ;
+    rdfs:label "controls" ;
+    owl:inverseOf subway:controlledBy .
+
+subway:affects rdf:type owl:ObjectProperty, owl:TransitiveProperty ;
+    rdfs:domain subway:Infrastructure ;
+    rdfs:range subway:Infrastructure ;
+    rdfs:label "affects" .
+
+subway:dependsOn rdf:type owl:ObjectProperty ;
+    rdfs:domain subway:Infrastructure ;
+    rdfs:range subway:Infrastructure ;
+    rdfs:label "depends on" .
+
+subway:reportsTo rdf:type owl:ObjectProperty ;
+    rdfs:domain subway:FieldAgent ;
+    rdfs:range subway:CommandPersonnel ;
+    rdfs:label "reports to" .
+
+subway:monitors rdf:type owl:ObjectProperty ;
+    rdfs:domain subway:SensorData ;
+    rdfs:range subway:Infrastructure ;
+    rdfs:label "monitors" .
+
+subway:manages rdf:type owl:ObjectProperty ;
+    rdfs:domain subway:TransitAuthority ;
+    rdfs:range subway:Infrastructure ;
+    rdfs:label "manages" .
+
+# Data Properties (Attributes)
+subway:connectionCount rdf:type owl:DatatypeProperty ;
+    rdfs:domain subway:Entity ;
+    rdfs:range xsd:integer ;
+    rdfs:label "connection count" .
+
+subway:criticalityScore rdf:type owl:DatatypeProperty ;
+    rdfs:domain subway:Infrastructure ;
+    rdfs:range xsd:float ;
+    rdfs:label "criticality score" .
+
+subway:dailyPassengerCount rdf:type owl:DatatypeProperty ;
+    rdfs:domain subway:TransitStructure ;
+    rdfs:range xsd:integer ;
+    rdfs:label "daily passenger count" .
+
+subway:operationalStatus rdf:type owl:DatatypeProperty ;
+    rdfs:domain subway:Infrastructure ;
+    rdfs:range xsd:string ;
+    rdfs:label "operational status" .
+
+subway:severityLevel rdf:type owl:DatatypeProperty ;
+    rdfs:domain subway:Hazard ;
+    rdfs:range xsd:float ;
+    rdfs:label "severity level" .
+
+subway:estimatedFailureTime rdf:type owl:DatatypeProperty ;
+    rdfs:domain subway:Infrastructure ;
+    rdfs:range xsd:duration ;
+    rdfs:label "estimated failure time" .
+
+# Instances (Your 32 Entities)
+# Infrastructure Instances
+subway:Pump_A7 rdf:type subway:PowerSystem ;
+    rdfs:label "Pump A7" ;
+    subway:criticalityScore 0.85 ;
+    subway:operationalStatus "OPERATIONAL" .
+
+subway:Signal_Hub_4B rdf:type subway:SignalSystem ;
+    rdfs:label "Signal Hub 4B" ;
+    subway:criticalityScore 0.92 ;
+    subway:operationalStatus "OPERATIONAL" .
+
+subway:Tunnels rdf:type subway:TransitStructure ;
+    rdfs:label "Subway Tunnels" ;
+    subway:dailyPassengerCount 200000 ;
+    subway:criticalityScore 0.95 .
+
+subway:Drainage_Systems rdf:type subway:DrainageSystem ;
+    rdfs:label "Drainage Systems" ;
+    subway:criticalityScore 0.78 .
+
+subway:Pump_Rooms rdf:type subway:PowerSystem ;
+    rdfs:label "Pump Rooms" ;
+    subway:criticalityScore 0.72 .
+
+subway:Power_Supply rdf:type subway:PowerSystem ;
+    rdfs:label "Power Supply" ;
+    subway:criticalityScore 0.88 .
+
+subway:Stations rdf:type subway:TransitStructure ;
+    rdfs:label "Subway Stations" ;
+    subway:dailyPassengerCount 150000 ;
+    subway:criticalityScore 0.85 .
+
+subway:Communications_Systems rdf:type subway:Infrastructure ;
+    rdfs:label "Communications Systems" ;
+    subway:criticalityScore 0.80 .
+
+# Government Instances
+subway:NYCT rdf:type subway:TransitAuthority ;
+    rdfs:label "New York City Transit" ;
+    subway:connectionCount 13 ;
+    subway:criticalityScore 1.0 .
+
+subway:MTA rdf:type subway:TransitAuthority ;
+    rdfs:label "Metropolitan Transportation Authority" ;
+    subway:connectionCount 9 ;
+    subway:criticalityScore 0.95 .
+
+subway:NYC_OEM rdf:type subway:EmergencyAgency ;
+    rdfs:label "NYC Office of Emergency Management" ;
+    subway:connectionCount 3 .
+
+subway:FEMA rdf:type subway:EmergencyAgency ;
+    rdfs:label "Federal Emergency Management Agency" ;
+    subway:connectionCount 1 .
+
+# Personnel Instances
+subway:Emergency_Response_Teams rdf:type subway:FieldAgent ;
+    rdfs:label "Emergency Response Teams" ;
+    subway:connectionCount 5 .
+
+subway:Maintenance_Crews rdf:type subway:FieldAgent ;
+    rdfs:label "Maintenance Crews" ;
+    subway:connectionCount 4 .
+
+subway:Station_Managers rdf:type subway:CommandPersonnel ;
+    rdfs:label "Station Managers" ;
+    subway:connectionCount 2 .
+
+subway:Subway_Operators rdf:type subway:FieldAgent ;
+    rdfs:label "Subway Operators" ;
+    subway:connectionCount 2 .
+
+# Information Instances
+subway:Flood_Sensors rdf:type subway:SensorData ;
+    rdfs:label "Flood Sensors" ;
+    subway:connectionCount 2 .
+
+subway:Weather_Forecasts rdf:type subway:SensorData ;
+    rdfs:label "Weather Forecasts" ;
+    subway:connectionCount 2 .
+
+subway:Emergency_Protocols rdf:type subway:Protocol ;
+    rdfs:label "Emergency Protocols" ;
+    subway:connectionCount 2 .
+
+subway:Historical_Flood_Reports rdf:type subway:Information ;
+    rdfs:label "Historical Flood Reports" ;
+    subway:connectionCount 1 .
+
+subway:Maintenance_Records rdf:type subway:Information ;
+    rdfs:label "Maintenance Records" ;
+    subway:connectionCount 2 .
+
+# Environmental Instances
+subway:Rainfall rdf:type subway:Hazard ;
+    rdfs:label "Rainfall" ;
+    subway:severityLevel 0.6 .
+
+subway:Sea_Level_Rise rdf:type subway:Hazard ;
+    rdfs:label "Sea Level Rise" ;
+    subway:severityLevel 0.8 .
+
+subway:Storm_Surge rdf:type subway:Hazard ;
+    rdfs:label "Storm Surge" ;
+    subway:severityLevel 0.9 .
+
+subway:Urban_Runoff rdf:type subway:Hazard ;
+    rdfs:label "Urban Runoff" ;
+    subway:severityLevel 0.5 .
+
+# Public Instances
+subway:Passengers rdf:type subway:Public ;
+    rdfs:label "Subway Passengers" ;
+    subway:connectionCount 2 .
+
+subway:Media rdf:type subway:Public ;
+    rdfs:label "News Media" ;
+    subway:connectionCount 1 .
+
+subway:Social_Media rdf:type subway:Public ;
+    rdfs:label "Social Media" ;
+    subway:connectionCount 1 .
+
+# Key Relationships (Your Critical Dependencies)
+subway:Pump_A7 subway:powers subway:Signal_Hub_4B .
+subway:Signal_Hub_4B subway:controls subway:Tunnels .
+subway:Power_Supply subway:powers subway:Communications_Systems .
+subway:Drainage_Systems subway:affects subway:Pump_Rooms .
+subway:NYCT subway:manages subway:Emergency_Response_Teams .
+subway:NYCT subway:manages subway:Maintenance_Crews .
+subway:NYCT subway:manages subway:Stations .
+subway:MTA subway:manages subway:NYCT .
+subway:Emergency_Response_Teams subway:reportsTo subway:Station_Managers .
+subway:Flood_Sensors subway:monitors subway:Tunnels .
+subway:Weather_Forecasts subway:affects subway:Drainage_Systems .
